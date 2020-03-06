@@ -1,4 +1,4 @@
-<br>Technologies, patterns used in app:
+Technologies, patterns used in app:
 <br> - Spring Boot (SpringWeb, SpringData),
 <br> - Data Transfer Object
 <br> - some GWT tests (in progress)
