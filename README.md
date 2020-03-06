@@ -1,6 +1,6 @@
 Technologies, patterns used in app:
 <br> - Spring Boot (SpringWeb, SpringData),
-<br> - Data Transfer Object
+<br> - Data Transfer Object pattern,
 <br> - some GWT tests (in progress)
 <br>
 <br>Short description:
