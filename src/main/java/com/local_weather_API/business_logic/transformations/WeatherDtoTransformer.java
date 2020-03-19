@@ -25,18 +25,18 @@ public class WeatherDtoTransformer {
         weatherDto.setLatitude(weatherFromOpenWeatherApi.getCoord().getLatitude());
         weatherDto.setMainWeatherType(weatherFromOpenWeatherApi.getWeather()[0].getMainWeatherType());
         weatherDto.setWeatherDescription(weatherFromOpenWeatherApi.getWeather()[0].getDescription());
-        weatherDto.setTemperature(calculateAverageTemperature(weatherFromOpenWeatherApi,
+        weatherDto.setTemperature(getAverageTemperature(weatherFromOpenWeatherApi,
                 weatherFromDarkSkyApi, weatherFromWeatherBit));
-        weatherDto.setTemperatureSensed(calculateAverageTemperatureSensed(weatherFromOpenWeatherApi,
+        weatherDto.setTemperatureSensed(getAverageTemperatureSensed(weatherFromOpenWeatherApi,
                 weatherFromDarkSkyApi, weatherFromWeatherBit));
-        weatherDto.setPressure(calculateAveragePressure(weatherFromOpenWeatherApi,
+        weatherDto.setPressure(getAveragePressure(weatherFromOpenWeatherApi,
                 weatherFromDarkSkyApi, weatherFromWeatherBit));
-        weatherDto.setHumidity(calculateAverageHumidity(weatherFromOpenWeatherApi,
+        weatherDto.setHumidity(getAverageHumidity(weatherFromOpenWeatherApi,
                 weatherFromDarkSkyApi, weatherFromWeatherBit));
-        weatherDto.setWindSpeed(calculateAverageWindSpeed(weatherFromOpenWeatherApi,
+        weatherDto.setWindSpeed(getAverageWindSpeed(weatherFromOpenWeatherApi,
                 weatherFromDarkSkyApi, weatherFromWeatherBit));
-        weatherDto.setWindDegrees(calculateAverageWindDegrees(weatherFromOpenWeatherApi,
-                weatherFromDarkSkyApi, weatherFromWeatherBit));
+        weatherDto.setWindDegrees(getAverageWindDegrees(weatherFromOpenWeatherApi,
+                weatherFromWeatherBit));
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         weatherDto.setDateTime(dtf.format(now).toString());
@@ -90,63 +90,52 @@ public class WeatherDtoTransformer {
         return weatherDtoForCityList;
     }
 
-    private float calculateAverageTemperature(WeatherFromOpenWeatherApi openWeather,
-                                              WeatherFromDarkSkyApi darkSky,
-                                              WeatherFromWeatherBit weatherBit) {
+    private float getAverageTemperature(WeathersConditions... weathersConditions) {
         float result = 0;
-        result = (openWeather.getMain().getTemperature()
-                + darkSky.getCurrently().getTemperature()
-                + weatherBit.getData()[0].getTemp()) / 3;
-        return result;
+        int size = weathersConditions.length;
+        for (int i = 0; i < size; i++)
+            result = result + weathersConditions[i].getTemperature();
+        return result / size;
     }
 
-    private float calculateAverageTemperatureSensed(WeatherFromOpenWeatherApi openWeather,
-                                                    WeatherFromDarkSkyApi darkSky,
-                                                    WeatherFromWeatherBit weatherBit) {
+    private float getAverageTemperatureSensed(WeathersConditions... weathersConditions) {
         float result = 0;
-        result = (openWeather.getMain().getTemperatureFeelsLike()
-                + darkSky.getCurrently().getApparentTemperature()
-                + weatherBit.getData()[0].getAppTemp()) / 3;
-        return result;
+        int size = weathersConditions.length;
+        for (int i = 0; i < size; i++)
+            result = result + weathersConditions[i].getTemperatureSensed();
+        return result / size;
     }
 
-    private int calculateAveragePressure(WeatherFromOpenWeatherApi openWeather,
-                                         WeatherFromDarkSkyApi darkSky,
-                                         WeatherFromWeatherBit weatherBit) {
+    private int getAveragePressure(WeathersConditions... weathersConditions) {
         int result = 0;
-        result = (openWeather.getMain().getPressure()
-                + darkSky.getCurrently().getPressure()
-                + (int) weatherBit.getData()[0].getPres()) / 3;
-        return result;
+        int size = weathersConditions.length;
+        for (int i = 0; i < size; i++)
+            result = result + weathersConditions[i].getPressure();
+        return result / size;
     }
 
-    private int calculateAverageHumidity(WeatherFromOpenWeatherApi openWeather,
-                                         WeatherFromDarkSkyApi darkSky,
-                                         WeatherFromWeatherBit weatherBit) {
+    private int getAverageHumidity(WeathersConditions... weathersConditions) {
         int result = 0;
-        result = (openWeather.getMain().getHumidity()
-                + (int) (darkSky.getCurrently().getHumidity() * 100)
-                + weatherBit.getData()[0].getHumidity()) / 3;
-        return result;
+        int size = weathersConditions.length;
+        for (int i = 0; i < size; i++)
+            result = result + weathersConditions[i].getHumidity();
+        return result / size;
     }
 
-    private float calculateAverageWindSpeed(WeatherFromOpenWeatherApi openWeather,
-                                         WeatherFromDarkSkyApi darkSky,
-                                         WeatherFromWeatherBit weatherBit) {
+    private float getAverageWindSpeed(WeathersConditions... weatherConditions) {
         float result = 0;
-        result = (openWeather.getWind().getSpeed()
-                + darkSky.getCurrently().getWindSpeed()
-                + weatherBit.getData()[0].getWindSpeed()) / 3;
-        return result;
+        int size = weatherConditions.length;
+        for (int i = 0; i < size; i++)
+            result = result + weatherConditions[i].getWindSpeed();
+        return result / size;
     }
 
-    private int calculateAverageWindDegrees(WeatherFromOpenWeatherApi openWeather,
-                                            WeatherFromDarkSkyApi darkSky,
-                                            WeatherFromWeatherBit weatherBit) {
+    private int getAverageWindDegrees(WeathersConditions... weathersConditions) {
         int result = 0;
-        result = (openWeather.getWind().getDegrees()
-                + weatherBit.getData()[0].getWindDir()) / 2;
-        return result;
+        int size = weathersConditions.length;
+        for (int i = 0; i < size; i++)
+            result = result + weathersConditions[i].getWindDegrees();
+        return result / size;
     }
 
 }
