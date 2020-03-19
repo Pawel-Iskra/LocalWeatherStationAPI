@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class DarkSkyApiFetcher {
 
-    @Value("${app.URL2}")
+    @Value("${app.URL_DARKSKYWEATHER}")
     private String url2;
 
     public WeatherFromDarkSkyApi getWeatherFromApi(float latitude, float longitude) {
