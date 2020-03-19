@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class WeatherBitApiFetcher {
 
-    @Value("${app.URL3}")
+    @Value("${app.URL_WEATHERBIT}")
     private String url3;
 
     public WeatherFromWeatherBit getWeatherFromApi(float latitude, float longitude) {
