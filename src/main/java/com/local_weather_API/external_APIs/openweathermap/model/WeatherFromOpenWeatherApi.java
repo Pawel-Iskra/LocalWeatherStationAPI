@@ -1,8 +1,9 @@
 package com.local_weather_API.external_APIs.openweathermap.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.local_weather_API.business_logic.transformations.WeathersConditions;
 
-public class WeatherFromOpenWeatherApi {
+public class WeatherFromOpenWeatherApi implements WeathersConditions{
 
     private Weather[] weather;
     private Main main;
@@ -58,5 +59,36 @@ public class WeatherFromOpenWeatherApi {
 
     public void setCityName(String cityName) {
         this.cityName = cityName;
+    }
+
+
+    @Override
+    public float getTemperature() {
+        return getMain().getTemperature();
+    }
+
+    @Override
+    public float getTemperatureSensed() {
+        return getMain().getTemperatureFeelsLike();
+    }
+
+    @Override
+    public int getPressure() {
+        return getMain().getPressure();
+    }
+
+    @Override
+    public int getHumidity() {
+        return getMain().getHumidity();
+    }
+
+    @Override
+    public float getWindSpeed() {
+        return getWind().getSpeed();
+    }
+
+    @Override
+    public int getWindDegrees() {
+        return getWind().getDegrees();
     }
 }
