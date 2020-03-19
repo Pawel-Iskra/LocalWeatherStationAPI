@@ -1,6 +1,8 @@
 package com.local_weather_API.external_APIs.darksky.model;
 
-public class WeatherFromDarkSkyApi {
+import com.local_weather_API.business_logic.transformations.WeathersConditions;
+
+public class WeatherFromDarkSkyApi implements WeathersConditions {
 
     private Currently currently;
 
@@ -13,5 +15,35 @@ public class WeatherFromDarkSkyApi {
 
     public void setCurrently(Currently currently) {
         this.currently = currently;
+    }
+
+    @Override
+    public float getTemperature() {
+        return getCurrently().getTemperature();
+    }
+
+    @Override
+    public float getTemperatureSensed() {
+        return getCurrently().getApparentTemperature();
+    }
+
+    @Override
+    public int getPressure() {
+        return getCurrently().getPressure();
+    }
+
+    @Override
+    public int getHumidity() {
+        return (int) (getCurrently().getHumidity() * 100);
+    }
+
+    @Override
+    public float getWindSpeed() {
+        return getCurrently().getWindSpeed();
+    }
+
+    @Override
+    public int getWindDegrees() {
+        return 0;
     }
 }
