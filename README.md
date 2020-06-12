@@ -1,4 +1,5 @@
-Technologies, patterns used in app:
+-> endpoint to receive weather conditions: http://localhost:8080/weather?city=xyz
+<br><br>Technologies, patterns used in app:
 <br> - Spring Boot (SpringWeb, SpringData),
 <br> - Rest API,
 <br> - Data Transfer Object pattern,
