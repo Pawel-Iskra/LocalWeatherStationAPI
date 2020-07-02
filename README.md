@@ -1,6 +1,6 @@
 Video sample of working:<br>
         -> sample 1: video sample of working : <a href="https://github.com/Pawel-Iskra/LocalWeatherStationAPI/blob/master/weather_api_1.mp4">Sample_1</a><br>
-        -> sample 2: video sample of working : <a href="https://github.com/Pawel-Iskra/LocalWeatherStationAPI/blob/master/weather_api_2.mp4">Sample_1</a><br>
+        -> sample 2: video sample of working : <a href="https://github.com/Pawel-Iskra/LocalWeatherStationAPI/blob/master/weather_api_2.mp4">Sample_2</a><br>
 <br><br>Technologies, patterns used in app:
 <br> - Spring Boot (SpringWeb, SpringData),
 <br> - Rest API,
