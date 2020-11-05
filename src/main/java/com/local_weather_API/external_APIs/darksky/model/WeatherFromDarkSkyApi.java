@@ -1,6 +1,6 @@
 package com.local_weather_API.external_APIs.darksky.model;
 
-import com.local_weather_API.business_logic.transformations.WeathersConditions;
+import com.local_weather_API.transformations.WeathersConditions;
 
 public class WeatherFromDarkSkyApi implements WeathersConditions {
 

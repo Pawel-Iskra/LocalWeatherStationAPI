@@ -1,5 +1,6 @@
 package com.local_weather_API.repository;
 
+import com.local_weather_API.models.Location;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Station</title>
+    <style>table, td {
+        border: 1px solid #333;
+        border-collapse: collapse;
+        background-color:yellowgreen;
+    }
+    td {
+        padding: 8px;
+        text-align: center;
+    }
+    body {
+        background-image: url('image2.jpg');
+    }
+    </style>
+
+</head>
+<body>
+<h1 align="center">Weather station</h1>
+<form id="cityname" style="width:25%; margin: 0 auto">
+    <B>Type city name: </B><input type="text" name="city" placeholder="CITY NAME">
+    <br/>
+    <button id="btn"><B>Check current weather</B></button>
+</form>
+<br/>
+<div id="response" align="center"></div>
+
+<script>
+    const response = document.getElementById('response');
+    const form = document.getElementById('cityname');
+    const API_URL = 'http://localhost:8080';
+    document.getElementById('btn').addEventListener('click', (event) => {
+        event.preventDefault();
+        const formObj = {
+            city: form.elements.city.value
+        }
+        fetch(`${API_URL}/weather?${new URLSearchParams(formObj)}`)
+            .then((response) => response.json())
+            .then((out) => {
+                document.getElementById('response').innerHTML =
+                    `<table >
+                    <tr>
+                        <td><B>City</td>
+                        <td><B>${out.cityName}, ${out.countryName} <br/>
+                            longitude: ${out.longitude},<br/>
+                            latitude: ${out.latitude}</td>
+                    </tr>
+                     <tr>
+                        <td><B>Main weather type</td>
+                        <td><B>${out.mainWeatherType}</td>
+                    </tr>
+                     <tr>
+                        <td><B>Weather description</td>
+                        <td><B>${out.weatherDescription}</td>
+                    </tr>
+                    <tr>
+                        <td><B>Temperature</td>
+                        <td><B>${out.temperature}°C</td>
+                    </tr>
+                    <tr>
+                        <td><B>Temperature sensed</td>
+                        <td><B>${out.temperatureSensed}°C</td>
+                    </tr>
+                    <tr>
+                        <td><B>Pressure</td>
+                        <td><B>${out.pressure} hPa</td>
+                    </tr>
+                    <tr>
+                        <td><B>Humidity</td>
+                        <td><B>${out.humidity}%</td>
+                    </tr>
+                    <tr>
+                        <td><B>Wind speed</td>
+                        <td><B>${out.windSpeed} m/s</td>
+                    </tr>
+                    <tr>
+                        <td><B>Wind degrees</td>
+                        <td><B>${out.windDegrees}°</td>
+                    </tr>
+                     <tr>
+                        <td><B>Date time</td>
+                        <td><B>${out.dateTime}</td>
+                    </tr>
+                </table>`
+            });
+    });
+</script>
+</body>
+</html>

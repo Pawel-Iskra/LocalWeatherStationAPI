@@ -1,5 +1,7 @@
 package com.local_weather_API.repository;
 
+import com.local_weather_API.models.Location;
+import com.local_weather_API.models.Weather;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

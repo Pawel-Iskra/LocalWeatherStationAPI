@@ -1,7 +1,7 @@
 package com.local_weather_API.external_APIs.openweathermap.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.local_weather_API.business_logic.transformations.WeathersConditions;
+import com.local_weather_API.transformations.WeathersConditions;
 
 public class WeatherFromOpenWeatherApi implements WeathersConditions{
 
