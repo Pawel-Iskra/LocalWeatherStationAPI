@@ -17,6 +17,7 @@ public class WeatherBitApiFetcher {
         int latDec = (int) Math.abs((latitude * 100) - latInt * 100);
         int lonInt = (int) longitude;
         int lonDec = (int) Math.abs((longitude * 100) - lonInt * 100);
-        return restTemplate.getForObject(String.format(url3, latInt, latDec, lonInt, lonDec), WeatherFromWeatherBit.class);
+        return restTemplate.getForObject(
+                String.format(url3, latInt, latDec, lonInt, lonDec), WeatherFromWeatherBit.class);
     }
 }

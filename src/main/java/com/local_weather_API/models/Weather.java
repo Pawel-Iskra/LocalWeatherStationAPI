@@ -26,11 +26,11 @@ public class Weather {
     public Weather() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -38,8 +38,8 @@ public class Weather {
         return mainWeatherType;
     }
 
-    public void setMainWeatherType(String main) {
-        this.mainWeatherType = main;
+    public void setMainWeatherType(String mainWeatherType) {
+        this.mainWeatherType = mainWeatherType;
     }
 
     public String getDescription() {
@@ -50,51 +50,51 @@ public class Weather {
         this.description = description;
     }
 
-    public float getTemperature() {
+    public Float getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(float temperature) {
+    public void setTemperature(Float temperature) {
         this.temperature = temperature;
     }
 
-    public float getTemperatureFeelsLike() {
+    public Float getTemperatureFeelsLike() {
         return temperatureFeelsLike;
     }
 
-    public void setTemperatureFeelsLike(float temperatureFeelsLike) {
+    public void setTemperatureFeelsLike(Float temperatureFeelsLike) {
         this.temperatureFeelsLike = temperatureFeelsLike;
     }
 
-    public int getPressure() {
+    public Integer getPressure() {
         return pressure;
     }
 
-    public void setPressure(int pressure) {
+    public void setPressure(Integer pressure) {
         this.pressure = pressure;
     }
 
-    public int getHumidity() {
+    public Integer getHumidity() {
         return humidity;
     }
 
-    public void setHumidity(int humidity) {
+    public void setHumidity(Integer humidity) {
         this.humidity = humidity;
     }
 
-    public float getWindSpeed() {
+    public Float getWindSpeed() {
         return windSpeed;
     }
 
-    public void setWindSpeed(float windSpeed) {
+    public void setWindSpeed(Float windSpeed) {
         this.windSpeed = windSpeed;
     }
 
-    public int getWindDegrees() {
+    public Integer getWindDegrees() {
         return windDegrees;
     }
 
-    public void setWindDegrees(int windDegrees) {
+    public void setWindDegrees(Integer windDegrees) {
         this.windDegrees = windDegrees;
     }
 
@@ -102,8 +102,8 @@ public class Weather {
         return dateTime;
     }
 
-    public void setDateTime(String date) {
-        this.dateTime = date;
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
     }
 
     public Location getLocation() {

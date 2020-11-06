@@ -50,6 +50,7 @@ public class WeatherService {
         if ((city == null) || city.isBlank()) {
             throw new IllegalArgumentException("invalid city name");
         }
+        city = city.strip();
         WeatherFromOpenWeatherApi weatherFromOpenWeatherApi = openWeatherApiFetcher.getWeatherFromAPI(city);
         float longitude = weatherFromOpenWeatherApi.getCoord().getLongitude();
         float latitude = weatherFromOpenWeatherApi.getCoord().getLatitude();

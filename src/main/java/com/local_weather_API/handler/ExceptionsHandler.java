@@ -16,7 +16,7 @@ public class ExceptionsHandler {
     }
 
     @ExceptionHandler(value = IllegalArgumentException.class)
-    public ResponseEntity<Object> illegalArgumentException(NoSuchElementException e) {
+    public ResponseEntity<Object> illegalArgumentException(IllegalArgumentException e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 

@@ -25,18 +25,18 @@ public class WeatherDtoTransformer {
         weatherDto.setLatitude(weatherFromOpenWeatherApi.getCoord().getLatitude());
         weatherDto.setMainWeatherType(weatherFromOpenWeatherApi.getWeather()[0].getMainWeatherType());
         weatherDto.setWeatherDescription(weatherFromOpenWeatherApi.getWeather()[0].getDescription());
-        weatherDto.setTemperature(getAverageTemperature(weatherFromOpenWeatherApi,
-                weatherFromDarkSkyApi, weatherFromWeatherBit));
-        weatherDto.setTemperatureSensed(getAverageTemperatureSensed(weatherFromOpenWeatherApi,
-                weatherFromDarkSkyApi, weatherFromWeatherBit));
-        weatherDto.setPressure(getAveragePressure(weatherFromOpenWeatherApi,
-                weatherFromDarkSkyApi, weatherFromWeatherBit));
-        weatherDto.setHumidity(getAverageHumidity(weatherFromOpenWeatherApi,
-                weatherFromDarkSkyApi, weatherFromWeatherBit));
-        weatherDto.setWindSpeed(getAverageWindSpeed(weatherFromOpenWeatherApi,
-                weatherFromDarkSkyApi, weatherFromWeatherBit));
-        weatherDto.setWindDegrees(getAverageWindDegrees(weatherFromOpenWeatherApi,
-                weatherFromWeatherBit));
+        weatherDto.setTemperature(getAverageTemperature(
+                weatherFromOpenWeatherApi, weatherFromDarkSkyApi, weatherFromWeatherBit));
+        weatherDto.setTemperatureSensed(getAverageTemperatureSensed(
+                weatherFromOpenWeatherApi, weatherFromDarkSkyApi, weatherFromWeatherBit));
+        weatherDto.setPressure(getAveragePressure(
+                weatherFromOpenWeatherApi, weatherFromDarkSkyApi, weatherFromWeatherBit));
+        weatherDto.setHumidity(getAverageHumidity(
+                weatherFromOpenWeatherApi, weatherFromDarkSkyApi, weatherFromWeatherBit));
+        weatherDto.setWindSpeed(getAverageWindSpeed(
+                weatherFromOpenWeatherApi, weatherFromDarkSkyApi, weatherFromWeatherBit));
+        weatherDto.setWindDegrees(getAverageWindDegrees(
+                weatherFromOpenWeatherApi, weatherFromWeatherBit));
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         weatherDto.setDateTime(dtf.format(now).toString());
