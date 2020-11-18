@@ -3,6 +3,8 @@ package com.local_weather_API.controllers;
 import com.local_weather_API.dtos.LocationDto;
 import com.local_weather_API.services.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,20 +21,20 @@ public class LocationController {
     }
 
     @GetMapping
-    public List<LocationDto> getAllLocationsFromDatabase(){
-        return locationService.getAllLocationsFromDatabase();
+    public ResponseEntity<List<LocationDto>> getAllLocationsFromDatabase() {
+        return new ResponseEntity<>(locationService.getAllLocationsFromDatabase(), HttpStatus.OK);
     }
 
     @GetMapping("/{country}")
-    public List<LocationDto> getLocationsForCountry(@PathVariable String country){
-        return locationService.getLocationsForCountry(country);
+    public ResponseEntity<List<LocationDto>> getLocationsForCountry(@PathVariable String country) {
+        return new ResponseEntity<>(locationService.getLocationsForCountry(country), HttpStatus.OK);
     }
 
     @DeleteMapping("/{city}")
-    public void deleteLocationWithAllItsWeathers(@PathVariable String city){
-        locationService.removeLocationFromDatabaseWithAllItsWeathers(city);
+    public ResponseEntity<String> deleteLocationWithAllItsWeathers(@PathVariable String city) {
+        return new ResponseEntity<>(
+                locationService.removeLocationFromDatabaseWithAllItsWeathers(city), HttpStatus.OK);
     }
-
 
 
 }

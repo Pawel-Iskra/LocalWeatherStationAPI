@@ -6,14 +6,16 @@
     <style>table, td {
         border: 1px solid #333;
         border-collapse: collapse;
-        background-color:yellowgreen;
+        background-color: yellowgreen;
     }
+
     td {
         padding: 8px;
         text-align: center;
     }
+
     body {
-        background-image: url('image2.jpg');
+        background-image: url('image3a.jpg');
     }
     </style>
 
@@ -27,11 +29,20 @@
 </form>
 <br/>
 <div id="response" align="center"></div>
+<select id="selectLocation">
+    <option value="">Select...</option>
+</select>
 
 <script>
-    const response = document.getElementById('response');
-    const form = document.getElementById('cityname');
     const API_URL = 'http://localhost:8080';
+    const form = document.getElementById('cityname');
+
+    fetch(`${API_URL}/location`)
+        .then(response => response.json())
+    .then(locations => {
+        //
+    });
+
     document.getElementById('btn').addEventListener('click', (event) => {
         event.preventDefault();
         const formObj = {

@@ -4,6 +4,8 @@ import com.local_weather_API.dtos.WeatherDto;
 import com.local_weather_API.dtos.WeatherDtoForCityList;
 import com.local_weather_API.services.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,13 +23,13 @@ public class WeatherController {
     }
 
     @GetMapping
-    public WeatherDto getCurrentWeatherForCityName(@RequestParam String city) {
-        return weatherService.getCurrentWeatherForCityName(city);
+    public ResponseEntity<WeatherDto> getCurrentWeatherForCityName(@RequestParam String city) {
+        return new ResponseEntity<>(weatherService.getCurrentWeatherForCityName(city), HttpStatus.OK);
     }
 
     @GetMapping("/history/{city}")
-    public List<WeatherDtoForCityList> getWeatherHistoryForCityName(@PathVariable String city) {
-        return weatherService.getWeatherHistoryForCityName(city);
+    public ResponseEntity<List<WeatherDtoForCityList>> getWeatherHistoryForCityName(@PathVariable String city) {
+        return new ResponseEntity<>(weatherService.getWeatherHistoryForCityName(city), HttpStatus.OK);
     }
 
 }

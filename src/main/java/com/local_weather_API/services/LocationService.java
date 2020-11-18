@@ -41,7 +41,7 @@ public class LocationService {
                 .collect(Collectors.toList());
     }
 
-    public void removeLocationFromDatabaseWithAllItsWeathers(String city){
+    public String removeLocationFromDatabaseWithAllItsWeathers(String city) {
         Location locationToDelete = locationRepository.findByCity(city)
                 .orElseThrow(() -> {
                     throw new NoSuchElementException("No such location found in database.");
@@ -50,6 +50,8 @@ public class LocationService {
                 .stream()
                 .forEach(weather -> weatherRepository.delete(weather));
         locationRepository.delete(locationToDelete);
+
+        return "location and its weather history was removed from db";
     }
 
 }
