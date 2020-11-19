@@ -25,25 +25,103 @@
 <form id="cityname" style="width:25%; margin: 0 auto">
     <B>Type city name: </B><input type="text" name="city" placeholder="CITY NAME">
     <br/>
-    <button id="btn"><B>Check current weather</B></button>
+    <button id="btn1"><B>Check current weather</B></button>
 </form>
 <br/>
+
 <div id="response" align="center"></div>
-<select id="selectLocation">
-    <option value="">Select...</option>
-</select>
+
+<br/>
+<div align="center">
+    <button id="btn2">Get cities from db</button>
+</div>
+
+<div align="center">
+    <button id="btn3"><B>Check weather history</B></button>
+</div>
+
+<div align="center">
+    <select id="selectLocation">
+
+    </select>
+    <br>
+</div>
+
+<br>
+<div id="historyresponse" align="center"></div>
+
 
 <script>
     const API_URL = 'http://localhost:8080';
     const form = document.getElementById('cityname');
 
-    fetch(`${API_URL}/location`)
-        .then(response => response.json())
-    .then(locations => {
-        //
+    document.getElementById('btn3').addEventListener('click', (event) => {
+        event.preventDefault();
+        var selectedCity = document.getElementById('selectLocation');
+        console.log("selectedCity = " + selectedCity.value);
+        fetch(`${API_URL}/weather/history/` + selectedCity.value)
+            .then(response => response.json())
+            .then(weathers => {
+                var txt, i;
+                txt = "";
+                for (i in weathers) {
+                    txt += `<table>
+                            <tr>
+                            <td><B>DateTime</B></td>
+                            <td><B>${weathers[i].dateTime}</td>
+                            </tr>
+                            <tr>
+                            <td><B>Main weather type</B></td>
+                            <td><B>${weathers[i].mainWeatherType}</td>
+                            </tr>
+                            <tr>
+                            <td><B>Description</B></td>
+                            <td><B>${weathers[i].weatherDescription}</td>
+                            </tr>
+                            <tr>
+                            <td><B>Temperature</B></td>
+                            <td><B>${weathers[i].temperature}</td>
+                            </tr>
+                            <tr>
+                            <td><B>Temperature sensed</B></td>
+                            <td><B>${weathers[i].temperatureSensed}</td>
+                            </tr>
+                            <tr>
+                            <td><B>Pressure</B></td>
+                            <td><B>${weathers[i].pressure}</td>
+                            </tr>
+                            <tr>
+                            <td><B>Humidity</B></td>
+                            <td><B>${weathers[i].humidity}</td>
+                            </tr>
+                            <tr>
+                            <td><B>Wind speed</B></td>
+                            <td><B>${weathers[i].windSpeed}</td>
+                            </tr>
+                            </table>
+                            <br>
+                    `
+                }
+                document.getElementById('historyresponse').innerHTML = txt;
+            });
     });
 
-    document.getElementById('btn').addEventListener('click', (event) => {
+    document.getElementById('btn2').addEventListener('click', (event) => {
+        event.preventDefault();
+
+        fetch(`${API_URL}/location`)
+            .then(response => response.json())
+            .then(locations => {
+                let txt, i;
+                for (i in locations) {
+                    txt += "<option>" + locations[i].cityName + "</option>";
+                }
+
+                document.getElementById('selectLocation').innerHTML = txt;
+            });
+    });
+
+    document.getElementById('btn1').addEventListener('click', (event) => {
         event.preventDefault();
         const formObj = {
             city: form.elements.city.value
@@ -52,7 +130,7 @@
             .then((response) => response.json())
             .then((out) => {
                 document.getElementById('response').innerHTML =
-                    `<table >
+                    `<table>
                     <tr>
                         <td><B>City</td>
                         <td><B>${out.cityName}, ${out.countryName} <br/>

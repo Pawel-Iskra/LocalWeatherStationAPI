@@ -28,7 +28,7 @@ public class LocationService {
     }
 
     public List<LocationDto> getAllLocationsFromDatabase() {
-        return locationRepository.findAllByOrderByCountryAsc()
+        return locationRepository.findAllByOrderByCityAsc()
                 .stream()
                 .map(location -> locationDtoTransformer.locationFromEntityToDto(location))
                 .collect(Collectors.toList());
